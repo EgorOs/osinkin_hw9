@@ -17,7 +17,7 @@
 ![1 worker](https://github.com/EgorOs/osinkin_hw9/blob/master/pictures/1_worker.png)
 
 ### 5 workers
-![5 workers](https://github.com/EgorOs/osinkin_hw9/blob/master/pictures/1_worker.png)
+![5 workers](https://github.com/EgorOs/osinkin_hw9/blob/master/pictures/5_workers.png)
 
 ### 10 workers
-![10 workers](https://github.com/EgorOs/osinkin_hw9/blob/master/pictures/1_worker.png)
+![10 workers](https://github.com/EgorOs/osinkin_hw9/blob/master/pictures/10_workers.png)
