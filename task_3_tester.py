@@ -1,26 +1,41 @@
 #!/usr/bin/env python3
-from time import sleep
+from time import sleep, time
 from socket import *
 import sys
-# address = ('localhost', 6781)
-# max_size = 1000
-# print('Starting client at', datetime.now())
-# client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-# client.connect(address)
-# client.sendall(b'Hey')
-# data = client.recv(max_size)
-# print('At', datetime.now(), 'someone replied', data)
-# client.close()
+import os
+
 
 def send_numbers(port: int = 8000):
     address = ('localhost', port)
     max_size = 1024
     client = socket(AF_INET, SOCK_STREAM)
     client.connect(address)
-    x = 150000
+    x = int(100)
+    init_time = time()
     client.sendall(x.to_bytes((x.bit_length() + 7) // 8, byteorder=sys.byteorder))
+    data = client.recv(max_size)
+    print('Recieved', data, 'at', time())
+    # print('Processing took:', time() - init_time, '\n')
     client.close()
 
-while True:
-    sleep(.5)
-    send_numbers(6781)
+
+PORT = 6781
+
+
+print('Init time', time())
+for i in range(10):
+    pid = os.fork()
+    if pid == 0:
+        try:
+            send_numbers(PORT)
+            while 1:
+                pass
+        except KeyboardInterrupt:
+            sys.exit()
+
+try:
+    os.waitpid(-1, 0)
+except KeyboardInterrupt:
+    sys.exit()
+except:
+    print('lol')
